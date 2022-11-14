@@ -1,5 +1,6 @@
 import { FlatList, Text } from "react-native"
 import Place from "../../../models/Place"
+import PlaceItem from "../Item"
 
 type Props = {
     places: Place[]
@@ -13,8 +14,8 @@ const PlacesList = ({
         <FlatList 
             data={places}
             keyExtractor={({id}) => id} 
-            renderItem={() => (
-                <Text>ToDo</Text>
+            renderItem={({ item }) => (
+                <PlaceItem place={item}/>
             )}
         />
     )
