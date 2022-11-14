@@ -2,10 +2,9 @@ import { FlatList, Text } from "react-native"
 
 // Types
 import Place from "../../../models/Place"
+import FallbackView from "../../ui/FallbackView"
 // Components
 import PlaceItem from "../Item"
-// Styles
-import * as S from './styles'
 
 type Props = {
     places: Place[]
@@ -17,9 +16,7 @@ const PlacesList = ({
 }: Props) => {
     if (!places || places.length === 0) {
         return (
-            <S.Fallback>
-                <S.FallbackText>No places added yet - startin adding some! </S.FallbackText>
-            </S.Fallback>
+            <FallbackView>No places added yet - startin adding some!</FallbackView>
         )
     }
 
