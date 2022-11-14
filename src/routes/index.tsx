@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, StackScreenProps } from "@react-navigation/stack";
 
 import { AddPlace, AllPlaces } from "../screens";
 
@@ -7,7 +7,9 @@ export type RootStackParamList = {
     AllPlaces: undefined;
     AddPlace: undefined;
 };
-    
+
+export type NavigationProps = StackScreenProps<RootStackParamList, 'AllPlaces', 'AddPlace'>;
+
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
