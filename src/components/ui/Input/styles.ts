@@ -5,7 +5,7 @@ export const Wrapper = styled.View``
 export const Label = styled.Text`
     ${({theme}) => css`
         font-weight: bold;
-        margin-bottom: 4;
+        margin-bottom: 4px;
         color: ${theme.colors.primary500}
     `}
 `

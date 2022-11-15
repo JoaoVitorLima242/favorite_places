@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form'
+import ImagePicker from '../../ui/ImagePicker';
 import Input from '../../ui/Input'
 import * as S from './styles'
 
@@ -15,6 +16,9 @@ const PlaceForm = () => {
                 control={control}
                 name='title'
                 label='Title'
+            />
+            <ImagePicker 
+            
             />
         </S.Wrapper>
     )
