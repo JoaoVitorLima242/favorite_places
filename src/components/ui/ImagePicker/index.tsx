@@ -1,6 +1,7 @@
 import { launchCameraAsync, useCameraPermissions, PermissionStatus } from 'expo-image-picker'
 import { useState } from 'react';
 import { Alert, Image } from 'react-native';
+import Button from '../Button';
 
 import * as S from './styles'
 
@@ -57,7 +58,7 @@ const ImagePicker = () => {
                 }
                 
             </S.PreviewImage>
-            <S.TakePictureButton title='Take Image' onPress={takeImageHandler}/>
+            <Button icon='camera' onPress={takeImageHandler}>Take a picture</Button>
         </S.Wrapper>
     )
 }
