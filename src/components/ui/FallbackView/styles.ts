@@ -8,8 +8,9 @@ export const Fallback = styled.View`
 
 export const FallbackText = styled.Text`
     ${({theme}) => css`
-        font-size: 17px;
+        font-size: 18px;
         color: ${theme.colors.primary100};
         font-weight: 600;
+        margin-bottom: 30px;
     `}
 `

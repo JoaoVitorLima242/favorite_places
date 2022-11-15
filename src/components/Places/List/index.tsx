@@ -16,7 +16,7 @@ const PlacesList = ({
 }: Props) => {
     if (!places || places.length === 0) {
         return (
-            <FallbackView>No places added yet - startin adding some!</FallbackView>
+            <FallbackView>No places added yet - starting adding some!</FallbackView>
         )
     }
 
