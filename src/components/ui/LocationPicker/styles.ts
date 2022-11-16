@@ -11,6 +11,7 @@ export const MapPreview = styled.View`
         align-items: center;
         background-color: ${theme.colors.primary100};
         border-radius: 4px;
+        overflow: hidden;
     `)}
 `
 
@@ -19,4 +20,7 @@ export const Buttons = styled.View`
     justify-content: space-around;
     align-items: center;
 `
-
+export const PickedImage = styled.Image`
+    width: 100%;
+    height: 100%;
+`

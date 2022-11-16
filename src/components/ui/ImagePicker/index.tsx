@@ -1,6 +1,6 @@
 import { launchCameraAsync, useCameraPermissions, PermissionStatus } from 'expo-image-picker'
 import { useState } from 'react';
-import { Alert, Image } from 'react-native';
+import { Alert, Image, Text } from 'react-native';
 import Button from '../Button';
 
 import * as S from './styles'
@@ -54,7 +54,7 @@ const ImagePicker = () => {
                 {
                     pickedImage 
                     ? <S.PickedImage source={{uri: pickedImage}}/>
-                    : <S.NoImageText>No image taken yet.</S.NoImageText>
+                    : <Text>No image taken yet.</Text>
                 }
                 
             </S.PreviewImage>

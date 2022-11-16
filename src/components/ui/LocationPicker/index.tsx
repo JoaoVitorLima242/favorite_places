@@ -1,11 +1,15 @@
 import { getCurrentPositionAsync, useForegroundPermissions, PermissionStatus } from 'expo-location'
-import { Alert } from 'react-native'
+import { useState } from 'react'
+import { Alert, Text } from 'react-native'
+import { getMapPreview } from '../../../helpers/location'
 
 import Button from '../Button'
 import * as S from './styles'
 
 const LocationPicker = () => {
     const [locationPermissionInformation, requestPermission] = useForegroundPermissions()
+
+    const [pickedLocation, setPickedLocation] = useState('')
 
     const verifyPermission = async () => {
         if (locationPermissionInformation?.status === PermissionStatus.UNDETERMINED) {
@@ -30,9 +34,12 @@ const LocationPicker = () => {
             return
         }
 
-        const location = await getCurrentPositionAsync()
+        const { coords } = await getCurrentPositionAsync()
 
-        console.log(location)
+        setPickedLocation(getMapPreview({
+            lat: coords.latitude,
+            lng: coords.longitude
+        }))
     }
 
     const pickOnMapHandler = async () => {
@@ -41,11 +48,16 @@ const LocationPicker = () => {
             return
         }
     }
+    console.log()
 
     return (
         <S.Wrapper>
             <S.MapPreview>
-
+            {
+                pickedLocation 
+                ? <S.PickedImage source={{uri: pickedLocation}}/>
+                : <Text>No image taken yet.</Text>
+                }
             </S.MapPreview>
             <S.Buttons>
                 <Button icon='location' onPress={getLocationHandler}>Locate User</Button>

@@ -11,14 +11,9 @@ export const PreviewImage = styled.View`
         align-items: center;
         background-color: ${theme.colors.primary100};
         border-radius: 4px;
-        
+        overflow: hidden;
     `)}
 `
-
-export const TakePictureButton = styled.Button`
-`
-
-export const NoImageText = styled.Text``
 
 export const PickedImage = styled.Image`
     width: 100%;
