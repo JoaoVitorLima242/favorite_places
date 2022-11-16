@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import ImagePicker from '../../ui/ImagePicker';
 import Input from '../../ui/Input'
+import LocationPicker from '../../ui/LocationPicker';
 import * as S from './styles'
 
 type FormFields = {
@@ -17,9 +18,8 @@ const PlaceForm = () => {
                 name='title'
                 label='Title'
             />
-            <ImagePicker 
-            
-            />
+            <ImagePicker />
+            <LocationPicker />
         </S.Wrapper>
     )
 }
