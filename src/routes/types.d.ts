@@ -9,4 +9,3 @@ export type RootStackParamList = {
     Map: undefined;
 };
 
-export type NavigationProps = StackNavigationProp<RootStackParamList, 'Map', 'AddPlaces', 'AllPlaces'>;

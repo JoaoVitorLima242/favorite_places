@@ -1,18 +1,31 @@
-import { useNavigation } from '@react-navigation/native'
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
 import { getCurrentPositionAsync, useForegroundPermissions, PermissionStatus } from 'expo-location'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Alert, Text } from 'react-native'
 
-import { NavigationProps } from '../../../routes/types'
 import { getMapPreview } from '../../../helpers/location'
+import { RootStackParamList } from '../../../routes/types'
 import Button from '../Button'
 import * as S from './styles'
 
+type TUseRoute = RouteProp<RootStackParamList, 'AddPlace'>
+type TUseNavigation = StackNavigationProp<RootStackParamList, 'Map'>
+
+
 const LocationPicker = () => {
-    const navigation = useNavigation<NavigationProps>()
-    const [locationPermissionInformation, requestPermission] = useForegroundPermissions()
+    const navigation = useNavigation<TUseNavigation>()
+    const { params } = useRoute<TUseRoute>()
 
     const [pickedLocation, setPickedLocation] = useState('')
+
+    const [locationPermissionInformation, requestPermission] = useForegroundPermissions()
+
+    const mapPickedLocation = params && params.pickedLocation;
+
+    useEffect(() => {
+        if (mapPickedLocation) setPickedLocation(getMapPreview(mapPickedLocation))
+    }, [mapPickedLocation])
 
     const verifyPermission = async () => {
         if (locationPermissionInformation?.status === PermissionStatus.UNDETERMINED) {
