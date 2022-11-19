@@ -1,17 +1,14 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator, StackScreenProps } from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack";
+
 import { defaultTheme } from "../assets/styles/theme";
 import IconButton from "../components/ui/IconButton";
-
-import { AddPlace, AllPlaces } from "../screens";
-
-export type RootStackParamList = {
-    AllPlaces: undefined;
-    AddPlace: undefined;
-};
-
-export type NavigationProps = StackScreenProps<RootStackParamList, 'AllPlaces', 'AddPlace'>;
-
+import { 
+    AddPlace,
+    AllPlaces,
+    Map 
+} from "../screens";
+import { RootStackParamList } from "./types";
 
 const RootStack = createStackNavigator<RootStackParamList>();
 
@@ -46,6 +43,10 @@ const Navigation = () => {
                     options={{
                         title: 'Add a new Place'
                     }}
+                />
+                <RootStack.Screen 
+                    name="Map"
+                    component={Map}
                 />
             </RootStack.Navigator>
         </NavigationContainer>

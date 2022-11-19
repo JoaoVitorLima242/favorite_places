@@ -1,12 +1,15 @@
+import { useNavigation } from '@react-navigation/native'
 import { getCurrentPositionAsync, useForegroundPermissions, PermissionStatus } from 'expo-location'
 import { useState } from 'react'
 import { Alert, Text } from 'react-native'
-import { getMapPreview } from '../../../helpers/location'
 
+import { NavigationProps } from '../../../routes/types'
+import { getMapPreview } from '../../../helpers/location'
 import Button from '../Button'
 import * as S from './styles'
 
 const LocationPicker = () => {
+    const navigation = useNavigation<NavigationProps>()
     const [locationPermissionInformation, requestPermission] = useForegroundPermissions()
 
     const [pickedLocation, setPickedLocation] = useState('')
@@ -34,21 +37,19 @@ const LocationPicker = () => {
             return
         }
 
-        const { coords } = await getCurrentPositionAsync()
+        const response = await getCurrentPositionAsync()
+
+        const {latitude, longitude} = response.coords
 
         setPickedLocation(getMapPreview({
-            lat: coords.latitude,
-            lng: coords.longitude
+            latitude,
+            longitude
         }))
     }
 
     const pickOnMapHandler = async () => {
-        const hasPermission = await verifyPermission()
-        if(!hasPermission) {
-            return
-        }
+        navigation.navigate('Map')
     }
-    console.log()
 
     return (
         <S.Wrapper>
