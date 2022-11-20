@@ -8,28 +8,16 @@ import LocationPicker from '../../ui/LocationPicker';
 // Styles
 import * as S from './styles'
 // Types
-import { TLocation } from '../../../models/Place/index.d'
-// Helpers
-import { getAddress } from '../../../helpers/location';
+import { FormFields } from './types';
 
-export type FormFields = {
-    title: string;
-    location: TLocation;
-    image: string;
+type Props = {
+    onSavePlace: (data: FormFields) => void
 }
 
-export type FormValuesNames = 'title' | 'location' | 'image';
-
-const PlaceForm = () => {
+const PlaceForm = ({ onSavePlace }: Props) => {
     const { control, handleSubmit } = useForm<FormFields>()
 
-    const onSubmit = async ({image, location, title}: FormFields) => {
-        
-        console.log(location, 'teste')
-        const address = await getAddress(location)
-
-        console.log(address)
-    }
+    const onSubmit = async (data: FormFields) => onSavePlace(data)
 
     return (
         <S.Wrapper>

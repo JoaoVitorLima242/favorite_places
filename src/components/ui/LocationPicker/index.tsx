@@ -9,7 +9,7 @@ import { Alert, Text } from 'react-native'
 import { getMapPreview } from '../../../helpers/location'
 // Types
 import { RootStackParamList } from '../../../routes/types'
-import { FormFields, FormValuesNames } from '../../Places/Form'
+import { FormFields, FormValuesNames } from '../../Places/Form/types'
 // Components
 import Button from '../Button'
 // Styles
