@@ -9,13 +9,17 @@ type Props = {
     onPress?: ((event: GestureResponderEvent) => void);
     icon: keyof typeof Ionicons.glyphMap;
     children: ReactNode;
+    outline?: boolean;
 }
 
-const Button = ({ onPress, children, icon }: Props) => {
+const Button = ({ onPress, children, icon, outline }: Props) => {
     return (
-        <S.Wrapper onPress={onPress}>
+        <S.Wrapper 
+            onPress={onPress} 
+            outline={outline}
+        >
             <S.Icon name={icon} size={18} color={defaultTheme.colors.primary500}/>
-            <S.Text>{children}</S.Text>
+            <S.Text outline={outline}>{children}</S.Text>
         </S.Wrapper>
     )
 }

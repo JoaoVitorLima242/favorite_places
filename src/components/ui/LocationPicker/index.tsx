@@ -74,8 +74,19 @@ const LocationPicker = () => {
                 }
             </S.MapPreview>
             <S.Buttons>
-                <Button icon='location' onPress={getLocationHandler}>Locate User</Button>
-                <Button icon='map' onPress={pickOnMapHandler}>Pick on Map</Button>
+                <Button     
+                    outline 
+                    icon='location' 
+                    onPress={getLocationHandler}
+                >
+                    Locate User
+                </Button>
+                <Button 
+                    outline
+                    icon='map' onPress={pickOnMapHandler}
+                >
+                        Pick on Map
+                </Button>
             </S.Buttons>
         </S.Wrapper>
     )
