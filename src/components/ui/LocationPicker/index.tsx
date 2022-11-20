@@ -5,10 +5,14 @@ import { useEffect, useState } from 'react'
 import { Control, useController } from 'react-hook-form'
 import { Alert, Text } from 'react-native'
 
+// Helpers
 import { getMapPreview } from '../../../helpers/location'
+// Types
 import { RootStackParamList } from '../../../routes/types'
 import { FormFields, FormValuesNames } from '../../Places/Form'
+// Components
 import Button from '../Button'
+// Styles
 import * as S from './styles'
 
 type TUseRoute = RouteProp<RootStackParamList, 'AddPlace'>

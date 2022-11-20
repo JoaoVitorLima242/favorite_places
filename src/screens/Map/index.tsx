@@ -4,7 +4,7 @@ import { MapPressEvent, Marker, Region } from "react-native-maps"
 import { StackScreenProps } from '@react-navigation/stack';
 
 
-import { TLocation } from "../../helpers/location"
+import { TLocation } from "../../models/Place/index.d"
 
 import * as S from './styles'
 import { RootStackParamList } from "../../routes/types";

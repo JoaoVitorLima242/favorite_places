@@ -3,8 +3,11 @@ import { useState } from 'react';
 import { Control, useController } from 'react-hook-form';
 import { Alert, Text } from 'react-native';
 
+// Types
 import { FormFields, FormValuesNames } from '../../Places/Form';
+// Components
 import Button from '../Button';
+// Styles
 import * as S from './styles'
 
 type Props = {
