@@ -2,11 +2,12 @@ import { RouteProp, useNavigation, useRoute } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { getCurrentPositionAsync, useForegroundPermissions, PermissionStatus } from 'expo-location'
 import { useEffect, useState } from 'react'
-import { useController } from 'react-hook-form'
+import { Control, useController } from 'react-hook-form'
 import { Alert, Text } from 'react-native'
 
 import { getMapPreview } from '../../../helpers/location'
 import { RootStackParamList } from '../../../routes/types'
+import { FormFields, FormValuesNames } from '../../Places/Form'
 import Button from '../Button'
 import * as S from './styles'
 
@@ -14,8 +15,8 @@ type TUseRoute = RouteProp<RootStackParamList, 'AddPlace'>
 type TUseNavigation = StackNavigationProp<RootStackParamList, 'AddPlace'>
 
 type Props = {
-    control: any;
-    name: string;
+    control: Control<FormFields>;
+    name: FormValuesNames;
 }
 
 const LocationPicker = ({
@@ -38,7 +39,7 @@ const LocationPicker = ({
 
     useEffect(() => {
         if (mapPickedLocation) {
-            field.onChange(getMapPreview(mapPickedLocation))
+            field.onChange(mapPickedLocation)
             setPickedLocation(getMapPreview(mapPickedLocation))
         }
     }, [mapPickedLocation])
@@ -75,10 +76,10 @@ const LocationPicker = ({
             longitude
         }))
 
-        field.onChange(getMapPreview({
+        field.onChange({
             latitude,
             longitude
-        }))
+        })
 
     }
 

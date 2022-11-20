@@ -1,12 +1,27 @@
 import { launchCameraAsync, useCameraPermissions, PermissionStatus } from 'expo-image-picker'
 import { useState } from 'react';
+import { Control, useController } from 'react-hook-form';
 import { Alert, Text } from 'react-native';
 
+import { FormFields, FormValuesNames } from '../../Places/Form';
 import Button from '../Button';
 import * as S from './styles'
 
-const ImagePicker = () => {
+type Props = {
+    control: Control<FormFields>;
+    name: FormValuesNames;
+}
+
+const ImagePicker = ({
+    control,
+    name
+}: Props) => {
     const [cameraPermissionInfo, requestPermission] = useCameraPermissions();
+
+    const { field } = useController({
+        name,
+        control
+    })
     
     const [pickedImage, setPickedImage] = useState('')
 
@@ -42,6 +57,7 @@ const ImagePicker = () => {
 
         if (!response.canceled) {
             setPickedImage(response.assets[0].uri)
+            field.onChange(response.assets[0].uri)
         }
 
         
