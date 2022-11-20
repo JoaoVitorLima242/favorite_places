@@ -1,12 +1,12 @@
 import styled, { css, DefaultTheme } from "styled-components/native";
 import { Ionicons } from '@expo/vector-icons'
 
-type TWrapper = {
+type Outline = {
     outline?: boolean;
 }
 
 const wrapperModifiers = {
-    outline: (theme: DefaultTheme) => css`
+    outline: () => css`
         background-color: transparent;
     `
 }
@@ -17,9 +17,10 @@ const textModifiers = {
     `
 }
 
-export const Wrapper = styled.TouchableOpacity<TWrapper>`
+export const Wrapper = styled.TouchableOpacity<Outline>`
     ${({theme, outline}) => css`
         padding: 6px 12px;
+        margin: 4px 0;
         justify-content: center;
         align-items: center;
         flex-direction: row;
@@ -28,11 +29,11 @@ export const Wrapper = styled.TouchableOpacity<TWrapper>`
         border-radius: 4px;
 
 
-        ${outline && wrapperModifiers.outline(theme)}
+        ${outline && wrapperModifiers.outline()}
     `}
 `
 
-export const Text = styled.Text<TWrapper>`
+export const Text = styled.Text<Outline>`
     ${({theme, outline}) => css`
         color: ${theme.colors.primary800};
         font-weight: 700;

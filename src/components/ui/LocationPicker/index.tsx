@@ -2,6 +2,7 @@ import { RouteProp, useNavigation, useRoute } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { getCurrentPositionAsync, useForegroundPermissions, PermissionStatus } from 'expo-location'
 import { useEffect, useState } from 'react'
+import { useController } from 'react-hook-form'
 import { Alert, Text } from 'react-native'
 
 import { getMapPreview } from '../../../helpers/location'
@@ -10,12 +11,24 @@ import Button from '../Button'
 import * as S from './styles'
 
 type TUseRoute = RouteProp<RootStackParamList, 'AddPlace'>
-type TUseNavigation = StackNavigationProp<RootStackParamList, 'Map'>
+type TUseNavigation = StackNavigationProp<RootStackParamList, 'AddPlace'>
 
+type Props = {
+    control: any;
+    name: string;
+}
 
-const LocationPicker = () => {
+const LocationPicker = ({
+    control,
+    name
+}: Props) => {
     const navigation = useNavigation<TUseNavigation>()
     const { params } = useRoute<TUseRoute>()
+
+    const { field } = useController({
+        name,
+        control
+    })
 
     const [pickedLocation, setPickedLocation] = useState('')
 
@@ -24,7 +37,10 @@ const LocationPicker = () => {
     const mapPickedLocation = params && params.pickedLocation;
 
     useEffect(() => {
-        if (mapPickedLocation) setPickedLocation(getMapPreview(mapPickedLocation))
+        if (mapPickedLocation) {
+            field.onChange(getMapPreview(mapPickedLocation))
+            setPickedLocation(getMapPreview(mapPickedLocation))
+        }
     }, [mapPickedLocation])
 
     const verifyPermission = async () => {
@@ -58,6 +74,12 @@ const LocationPicker = () => {
             latitude,
             longitude
         }))
+
+        field.onChange(getMapPreview({
+            latitude,
+            longitude
+        }))
+
     }
 
     const pickOnMapHandler = async () => {
@@ -71,7 +93,7 @@ const LocationPicker = () => {
                 pickedLocation 
                 ? <S.PickedImage source={{uri: pickedLocation}}/>
                 : <Text>No image taken yet.</Text>
-                }
+            }
             </S.MapPreview>
             <S.Buttons>
                 <Button     
@@ -85,7 +107,7 @@ const LocationPicker = () => {
                     outline
                     icon='map' onPress={pickOnMapHandler}
                 >
-                        Pick on Map
+                    Pick on Map
                 </Button>
             </S.Buttons>
         </S.Wrapper>
