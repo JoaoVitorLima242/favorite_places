@@ -24,7 +24,11 @@ const PlaceDetailsScreen = ({ route, navigation}: Props) => {
         title
     } = place || {}
 
-    const showOnMapHandler = () => {}
+    const showOnMapHandler = () => {
+        navigation.navigate('Map', {
+            initialLocation: location
+        })
+    }
 
     const selectedPlaceId = route.params.placeId
 
