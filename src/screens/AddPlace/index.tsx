@@ -17,8 +17,9 @@ type Props = StackScreenProps<RootStackParamList, 'AddPlace'>;
 const AddPlaceScreen = ({ navigation }: Props) => {
     const createPlaceHandler = async ({ image, location, title }: FormFields) => {
         const address = await getAddress(location)
+        const id = Math.random();
         
-        const placeData = new Place(title, image, address, location)
+        const placeData = new Place(title, image, address, location, id)
 
         await insertPlace(placeData);
 

@@ -63,3 +63,42 @@ export const insertPlace = ({title, imageUri, address, location}: Place) => {
 
     return promise
 }
+
+export const fetchPlaces = () => {
+    const promise = new Promise((resolve, reject) => {
+        database.transaction((tx) => {
+            tx.executeSql(
+                `SELECT * from places`,
+                [],
+                (_, result) => {
+                    const places: Place[] = [];
+
+                    for (const dp of result.rows._array) {
+                        const data = dp
+                        const location = {
+                            latitude: data.lat,
+                            longitude: data.lng
+                        }
+
+                        const itemToPush = new Place(
+                            data.title,
+                            data.imageUri,
+                            data.address,
+                            location,
+                            data.id
+                        )
+
+                        places.push(itemToPush)
+                    }
+                    resolve(places)
+                },
+                (_, error) => {
+                    reject(error)
+                    return true
+                }
+            );
+        })
+    })
+
+    return promise as Promise<Place[]>
+}
