@@ -7,5 +7,8 @@ export type RootStackParamList = {
         pickedLocation?: TLocation
     };
     Map: undefined;
+    PlaceDetails: {
+        placeId: number;
+    }
 };
 

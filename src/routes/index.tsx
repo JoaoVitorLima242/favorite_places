@@ -6,7 +6,8 @@ import IconButton from "../components/ui/IconButton";
 import { 
     AddPlace,
     AllPlaces,
-    Map 
+    Map, 
+    PlaceDetails
 } from "../screens";
 import { RootStackParamList } from "./types";
 
@@ -47,6 +48,10 @@ const Navigation = () => {
                 <RootStack.Screen 
                     name="Map"
                     component={Map}
+                />
+                <RootStack.Screen 
+                    name="PlaceDetails"
+                    component={PlaceDetails}
                 />
             </RootStack.Navigator>
         </NavigationContainer>
