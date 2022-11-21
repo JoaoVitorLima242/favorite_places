@@ -15,7 +15,9 @@ const PlaceItem = ({ place }: Props) => {
     } = place
 
     return (
-        <S.Wrapper>
+        <S.Wrapper
+            activeOpacity={0.9}
+        >
             <S.Image source={{uri: imageUri}}/>
             <S.Information>
                 <S.Title>{title}</S.Title>
