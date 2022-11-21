@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components/native";
+import Button from "../../components/ui/Button";
 
 export const ScrollWrapper = styled.ScrollView`
 `

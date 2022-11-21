@@ -52,6 +52,9 @@ const Navigation = () => {
                 <RootStack.Screen 
                     name="PlaceDetails"
                     component={PlaceDetails}
+                    options={{
+                        title: 'Loading place...'
+                    }}
                 />
             </RootStack.Navigator>
         </NavigationContainer>
