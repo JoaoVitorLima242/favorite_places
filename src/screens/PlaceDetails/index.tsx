@@ -20,10 +20,16 @@ const PlaceDetailsScreen = ({ route }: Props) => {
             <S.Image />
             <S.LocationView>
                 <S.AddressView>
-                    <S.AddressText></S.AddressText>
+                    <S.AddressText>ADDRESS</S.AddressText>
                 </S.AddressView>
             </S.LocationView>
-            <Button icon='map' onPress={showOnMapHandler}>View on map</Button>
+            <Button 
+                outline 
+                icon='map' 
+                onPress={showOnMapHandler}
+            >
+                View on map
+            </Button>
         </S.ScrollWrapper>
     )
 }

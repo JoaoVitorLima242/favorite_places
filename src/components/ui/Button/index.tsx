@@ -18,7 +18,7 @@ const Button = ({ onPress, children, icon, outline }: Props) => {
             onPress={onPress} 
             outline={outline}
         >
-            {icon && <S.Icon name={icon} size={18} color={defaultTheme.colors.primary500}/>}
+            {icon && <S.Icon name={icon} size={18} color={outline ?  defaultTheme.colors.primary500 : defaultTheme.colors.primary800}/>}
             <S.Text outline={outline}>{children}</S.Text>
         </S.Wrapper>
     )
