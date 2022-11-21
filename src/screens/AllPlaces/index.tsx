@@ -14,6 +14,7 @@ const AllPlacesScreen = () => {
         const loadPlaces = async () => {
             const places = await fetchPlaces()
 
+
             setLoadedPlaces(places)
         }
 
@@ -23,7 +24,9 @@ const AllPlacesScreen = () => {
     }, [isFocused])
 
     return (
-        <PlacesList places={loadedPlaces} />
+        <PlacesList 
+            places={loadedPlaces}
+        />
     )
 }
 

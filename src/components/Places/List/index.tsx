@@ -23,7 +23,7 @@ const PlacesList = ({
     return (
         <FlatList 
             data={places}
-            keyExtractor={({id}) => id} 
+            keyExtractor={(item) => item.id.toString()} 
             renderItem={({ item }) => (
                 <PlaceItem place={item}/>
             )}

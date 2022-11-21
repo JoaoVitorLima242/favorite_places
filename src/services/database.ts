@@ -79,7 +79,7 @@ export const fetchPlaces = () => {
                             latitude: data.lat,
                             longitude: data.lng
                         }
-
+                        
                         const itemToPush = new Place(
                             data.title,
                             data.imageUri,
@@ -87,9 +87,10 @@ export const fetchPlaces = () => {
                             location,
                             data.id
                         )
-
+                        
                         places.push(itemToPush)
                     }
+                    
                     resolve(places)
                 },
                 (_, error) => {
