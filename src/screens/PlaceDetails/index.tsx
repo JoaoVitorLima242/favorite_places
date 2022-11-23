@@ -1,5 +1,5 @@
 import { StackScreenProps } from '@react-navigation/stack';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import Button from '../../components/ui/Button';
 
 // Components
@@ -45,7 +45,7 @@ const PlaceDetailsScreen = ({ route, navigation}: Props) => {
             setPlace(place)
 
             navigation.setOptions({
-                title
+                title: place.title
             })
         }
 
