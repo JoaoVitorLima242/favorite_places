@@ -11,5 +11,6 @@ export const defaultTheme: DefaultTheme = {
         primary800: '#003b88',
         accent500: '#e6b30b',
         gray700: '#221c30',
+        secondary500: '#F0324B',
     }
 }

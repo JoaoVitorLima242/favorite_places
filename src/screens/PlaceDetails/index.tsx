@@ -8,7 +8,7 @@ import LoadingOverlay from '../../components/ui/LoadingOverlay';
 import Place from '../../models/Place';
 import { RootStackParamList } from '../../routes/types';
 // Services
-import { fetchPlaceById } from '../../services/database';
+import { deletePlace, fetchPlaceById } from '../../services/database';
 // Styles
 import * as S from './styles'
 
@@ -21,8 +21,11 @@ const PlaceDetailsScreen = ({ route, navigation}: Props) => {
         address,
         imageUri,
         location,
-        title
+        title,
+        id
     } = place || {}
+
+    const selectedPlaceId = route.params.placeId
 
     const showOnMapHandler = () => {
         navigation.navigate('Map', {
@@ -30,7 +33,11 @@ const PlaceDetailsScreen = ({ route, navigation}: Props) => {
         })
     }
 
-    const selectedPlaceId = route.params.placeId
+    const deleteItemById = async () => {
+        const response = await deletePlace(id as number)
+        console.log(response)
+        navigation.navigate('AllPlaces')
+    }
 
     useEffect(() => {
         const loadPlace = async () => {
@@ -38,7 +45,7 @@ const PlaceDetailsScreen = ({ route, navigation}: Props) => {
             setPlace(place)
 
             navigation.setOptions({
-                title: place.title
+                title
             })
         }
 
@@ -61,6 +68,16 @@ const PlaceDetailsScreen = ({ route, navigation}: Props) => {
                     View on map
                 </Button>
             </S.LocationView>
+            <S.DeleteView>
+                <Button 
+                    color='danger'
+                    outline 
+                    icon='trash'
+                    onPress={deleteItemById}
+                >
+                    Delete Place
+                </Button>
+            </S.DeleteView>
         </S.ScrollWrapper>
     )
 }

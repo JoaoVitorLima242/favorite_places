@@ -28,3 +28,9 @@ export const AddressText = styled.Text`
         text-align: center;
     `}
 `
+
+export const DeleteView = styled.View`
+    margin-top: 130px;
+    justify-content: center;
+    align-items: center;
+`

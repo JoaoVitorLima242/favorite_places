@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { GestureResponderEvent } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'
 
@@ -10,16 +10,31 @@ type Props = {
     icon?: keyof typeof Ionicons.glyphMap;
     children: ReactNode;
     outline?: boolean;
+    color?: 'danger'
 }
 
-const Button = ({ onPress, children, icon, outline }: Props) => {
+const Button = ({ onPress, children, icon, outline, color}: Props) => {
+    
+    const switchIconColorHandler = () => {
+        if (color === 'danger') {
+            return defaultTheme.colors.secondary500;
+        } else if (outline) {
+            return defaultTheme.colors.primary500;
+        } else {
+            return defaultTheme.colors.primary800
+        }
+    }
+
+    let iconColor = switchIconColorHandler()
+
     return (
         <S.Wrapper 
             onPress={onPress} 
             outline={outline}
+            color={color}
         >
-            {icon && <S.Icon name={icon} size={18} color={outline ?  defaultTheme.colors.primary500 : defaultTheme.colors.primary800}/>}
-            <S.Text outline={outline}>{children}</S.Text>
+            {icon && <S.Icon name={icon} size={18} color={iconColor}/>}
+            <S.Text color={color} outline={outline}>{children}</S.Text>
         </S.Wrapper>
     )
 }

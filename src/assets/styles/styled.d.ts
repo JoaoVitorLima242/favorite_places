@@ -11,6 +11,7 @@ declare module 'styled-components' {
             primary800: string;
             accent500: string;
             gray700: string;
+            secondary500: string;
         }
     }
 }

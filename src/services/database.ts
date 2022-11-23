@@ -137,3 +137,29 @@ export const fetchPlaceById = (id: number) => {
 
     return promise as Promise<Place>
 }
+
+export const deletePlace = (id: number) => {
+    if (!id) {
+        console.log('aqui')
+        return
+    }
+    const promise = new Promise((resolve, reject) => {
+        database.transaction((tx) => {
+            tx.executeSql(
+                `DELETE FROM places WHERE id = ?`,
+                [id],
+                (_, result) => {
+                    console.log(result)
+                    resolve(result)
+                },
+                (_, error) => {
+                    console.log(error)
+                    reject(error)
+                    return true
+                }
+            );
+        })
+    })
+
+    return promise
+}
